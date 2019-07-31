@@ -1,0 +1,177 @@
+.poke-board-card-container {
+  width: 100%;
+  font-size: 0;
+  text-align: center;
+  padding: 0 10px 10px 10px;
+  position: relative;
+}
+
+.poke-board-card {
+  display: inline-block;
+  width: 104px;
+  min-height: 128px;
+  color: white;
+  position: relative;
+  perspective: 800px;
+
+  @include respond-to(medium) {
+    width: calc(100% / 3);
+  }
+
+  @include respond-to(large) {
+    width: calc(100% / 4);
+    height: 190px;
+  }
+}
+
+.poke-board-card-content-back {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateY(0);
+  font-size: 40px;
+  display: block;
+  width: 95%;
+  height: 95%;
+  background-color: rgba(17, 59, 151, 0.507);
+  background-image: url(../0_images/pokeCard.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: transform 0.4s linear;
+  backface-visibility: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  border: 4px solid #fff;
+}
+
+.poke-board-card-content-front {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateY(180deg);
+  font-size: 40px;
+  display: block;
+  width: 95%;
+  height: 95%;
+  background-color: rgb(0, 0, 0);
+  transition: transform 0.4s linear;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  background-size: 110px 110px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: 1px solid rgb(252, 252, 252);
+  border-bottom: 2px solid rgb(252, 252, 252);
+
+  &::after {
+    content: attr(data-pokename);
+    font-size: 11px;
+    color: #000;
+    background-color: rgb(252, 252, 252);
+    padding: 2px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    overflow: hidden;
+    letter-spacing: 1px;
+    transition: background 0.2s ease 0.6s;
+
+    @include respond-to(medium) {
+      font-size: 14px;
+    }
+  }
+
+  @include respond-to(medium) {
+    background-size: 130px 130px;
+  }
+  @include respond-to(large) {
+    background-size: 160px 160px;
+  }
+}
+
+.cardMatch {
+  .poke-board-card-content-front {
+    &::after {
+      background-color: goldenrod;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      font-weight: bold;
+      transform: translate(-50%, -50%);
+      background-image: url(../0_images/star.png);
+      background-size: 30px 30px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      opacity: 0;
+
+      animation: starGlaze 0.2s ease 0.6s forwards;
+      @include respond-to(medium) {
+        background-size: 40px 40px;
+      }
+      @include respond-to(large) {
+        background-size: 50px 50px;
+      }
+    }
+  }
+}
+
+.flipCard {
+  .poke-board-card-content-back {
+    transform: translate(-50%, -50%) rotateY(-180deg);
+  }
+  .poke-board-card-content-front {
+    transform: translate(-50%, -50%) rotateY(0);
+  }
+}
+
+@keyframes starGlaze {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.overlayCardFetch {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 50;
+}
+
+.fetchAnim {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  p {
+    font-size: 18px;
+    color: #fefefe;
+  }
+}

@@ -1,0 +1,67 @@
+.overlayGame {
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 50;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlayGame[data-overlay="gameStart"] {
+  display: flex;
+}
+
+.overlayGame[data-overlay="gameWon"] {
+  display: none;
+  .gameCaption {
+    animation: blinking 1.2s steps(4, start) infinite;
+    span {
+      font-size: 20px;
+      color: #f8c505;
+      font-weight: bold;
+      font-size: 60px;
+      text-shadow: 1px 1px 0#2f69af, 1px 2px 0#2f69af, 1px 1px 0#2f69af,
+        1px -2px 0#2f69af;
+      position: relative;
+    }
+  }
+}
+
+.overlayGame[data-overlay="gameOver"] {
+  .gameCaption {
+    animation: blinking 1.2s steps(4, start) infinite;
+  }
+}
+
+@keyframes blinking {
+  50% {
+    visibility: hidden;
+  }
+}
+
+.gameCaption {
+  text-align: center;
+  visibility: visible;
+  user-select: none;
+  h1 {
+    font-family: "Press Start 2P", cursive;
+    color: #fefefe;
+    font-weight: bold;
+    font-size: 42px;
+    color: #f8c505;
+    text-shadow: 1px 1px 0#2f69af, 1px 2px 0#2f69af, 1px 1px 0#2f69af,
+      1px -2px 0#2f69af;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #fefe;
+    font-weight: 500;
+  }
+}
