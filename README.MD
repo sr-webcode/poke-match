@@ -1,5 +1,5 @@
 # Poke-Match 
-(a simple vanilla js card matching game)
+A simple and fun card matching game made from pure javascript. The game itself was inspired from the series 'Pokemon' owned by 'The Pokemon Company' in partnership with nintendo.
 
 See the app in action : [Poke-Match](https://pokematch.netlify.com/)
 
